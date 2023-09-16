@@ -1,0 +1,42 @@
+# Конфигурация ядра приложения
+SECRET_KEY: d5pb8c4facbd46638d0dc4e751e3d67d
+DEBUG: True
+HOST: 0.0.0.0
+PORT: 5050
+
+# Конфигурация БД
+db:
+  engine: postgresql
+  host: db
+  port: 5432
+  name: postgres
+  user: postgres
+  pass: postgres
+
+# Конфигурация RMQ
+rmq:
+  host: rabbitmq
+  port: 5672
+  user: guest
+  pass: guest
+  vhost: "%2F"
+
+queues:
+  tasks: tasks
+  results: results
+
+s3:
+  endpoint: https://storage.yandexcloud.net
+  bucket: rezenhorn-bucket
+
+audio:
+  supported_extensions:
+    - aac
+    - mid
+    - mp3
+    - m4a
+    - ogg
+    - flac
+    - wav
+    - amr
+    - aiff
