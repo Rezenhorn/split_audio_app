@@ -18,6 +18,11 @@ class UnsupportedExtensionError(Exception):
 
 
 def get_mono_audio_links(link: str) -> MonoAudioLinks:
+    """
+    Разбивает переданный по ссылке стерео
+    аудиофайл на 2 по каналам и загружает в s3 хранилище.
+    Возвращает ссылки на скачивание полученных файлов.
+    """
     file_name = str(uuid.uuid4())
     path_to_file = download_file(link, file_name)
     if ((extension := str(path_to_file).split(".")[-1])

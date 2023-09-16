@@ -9,7 +9,7 @@ from modules.main_logic import get_mono_audio_links
 
 
 class ThreadedConsumerBase(threading.Thread):
-    """Базовый класс для получения и обработки сообщений из rmq."""
+    """Базовый класс для получения и обработки сообщений из RMQ."""
 
     def __init__(self, app: Flask):
         threading.Thread.__init__(self)
@@ -20,7 +20,7 @@ class ThreadedConsumerBase(threading.Thread):
             )
             self.channel = self.connection.channel()
         except pika.exceptions.AMQPConnectionError as error:
-            self.app.logger.error("Ошибка присоединения к RabbitMQ")
+            self.app.logger.error(f"Ошибка присоединения к RabbitMQ: {error}")
             raise pika.exceptions.AMQPConnectionError from error
 
     def handle_messages(self, data):

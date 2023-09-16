@@ -11,16 +11,13 @@ class S3UploadError(Exception):
     pass
 
 
-AWS_SERVER_PUBLIC_KEY = "id"
-AWS_SERVER_SECRET_KEY = "key"
-
 session = boto3.Session(
-    aws_access_key_id=AWS_SERVER_PUBLIC_KEY,
-    aws_secret_access_key=AWS_SERVER_SECRET_KEY,
+    aws_access_key_id=config.get("aws_access_key_id"),
+    aws_secret_access_key=config.get("aws_secret_access_key"),
     region_name="ru-central1"
 )
 s3 = session.client(
-    service_name='s3',
+    service_name="s3",
     endpoint_url=config.get("s3.endpoint"),
 )
 

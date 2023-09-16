@@ -57,7 +57,8 @@ class Config(ConfigClass):
         self.RABBITMQ_SERVER = f"amqp://{rmq_db_user}:{rmq_db_pass}@{self.get('rmq.host')}:{self.get('rmq.port')}/{self.get('rmq.vhost')}"
 
         self.SQLALCHEMY_TRACK_MODIFICATIONS = True
-        self.JSON_AS_ASCII = False  # Настройка для корректного отображения ответов
+        # Настройка для корректного отображения ответов
+        self.JSON_AS_ASCII = False
 
 
 current_file = os.path.realpath(__file__)

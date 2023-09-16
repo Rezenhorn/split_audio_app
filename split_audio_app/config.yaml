@@ -21,15 +21,25 @@ rmq:
   pass: guest
   vhost: "%2F"
 
+# Конфигурация очередей RMQ
 queues:
   tasks: tasks
   results: results
 
+# Общие настройки приложения
+common:
+  # Количество тредов с консьюмером RabbitMQ
+  consumer_threads: 2
+
+# Конфигурация S3 хранилища
 s3:
   endpoint: https://storage.yandexcloud.net
-  bucket: rezenhorn-bucket
+  bucket: your-bucket
+  aws_server_public_key: your_public_key
+  aws_server_secret_key: your_secret_key
 
 audio:
+  # Поддерживаемые расширения аудиофайлов
   supported_extensions:
     - aac
     - mid

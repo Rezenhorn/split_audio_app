@@ -1,3 +1,4 @@
+from flask import current_app as app
 from flask import request
 
 from apps.api import blueprint
@@ -15,6 +16,7 @@ def audio_split():
         mono_files_links = get_mono_audio_links(link)
     except Exception as e:
         add_apprequest_to_db(link, False)
+        app.logger.error(f"Ошибка при использовании API: {e}")
         raise APIError(str(e)) from e
     add_apprequest_to_db(link, True)
     return {
