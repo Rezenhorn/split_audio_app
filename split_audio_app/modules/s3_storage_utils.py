@@ -12,8 +12,8 @@ class S3UploadError(Exception):
 
 
 session = boto3.Session(
-    aws_access_key_id=config.get("aws_access_key_id"),
-    aws_secret_access_key=config.get("aws_secret_access_key"),
+    aws_access_key_id=config.get("s3.aws_server_public_key"),
+    aws_secret_access_key=config.get("s3.aws_server_secret_key"),
     region_name="ru-central1"
 )
 s3 = session.client(
@@ -35,6 +35,4 @@ def upload_file_to_s3(
         s3.upload_file(path_to_file, bucket, object_name)
     except Exception as e:
         app.logger.error(f"Ошибка при загрузке файла в s3: {e}")
-        raise S3UploadError from e
-    finally:
-        os.remove(path_to_file)
+        raise S3UploadError(str(e)) from e

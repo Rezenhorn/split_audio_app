@@ -32,8 +32,16 @@ def get_mono_audio_links(link: str) -> MonoAudioLinks:
             f"Расширение файла `{extension}` не поддерживается."
         )
     paths_to_files = split_audio(path_to_file)
-    upload_file_to_s3(paths_to_files.left_channel, config.get("s3.bucket"))
-    upload_file_to_s3(paths_to_files.right_channel, config.get("s3.bucket"))
+    try:
+        upload_file_to_s3(
+            paths_to_files.left_channel, config.get("s3.bucket")
+        )
+        upload_file_to_s3(
+            paths_to_files.right_channel, config.get("s3.bucket")
+        )
+    finally:
+        os.remove(paths_to_files.left_channel)
+        os.remove(paths_to_files.right_channel)
     left_channel_link = (f"{config.get('s3.endpoint')}"
                          f"/{config.get('s3.bucket')}/"
                          f"{os.path.basename(paths_to_files.left_channel)}")
