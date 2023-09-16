@@ -1,6 +1,6 @@
 # Конфигурация ядра приложения
 SECRET_KEY: d5pb8c4facbd46638d0dc4e751e3d67d
-DEBUG: True
+DEBUG: False
 HOST: 0.0.0.0
 PORT: 5050
 
