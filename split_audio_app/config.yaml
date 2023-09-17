@@ -47,8 +47,9 @@ audio:
     - mid
     - mp3
     - m4a
-    - ogg
     - flac
     - wav
-    - amr
+    - wmv
     - aiff
+    - alac
+    - m4r

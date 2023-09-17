@@ -9,8 +9,8 @@ from modules.s3_storage_utils import upload_file_to_s3
 
 
 class MonoAudioLinks(NamedTuple):
-    left_channel_link: os.PathLike
-    right_channel_link: os.PathLike
+    left_channel_link: str
+    right_channel_link: str
 
 
 class UnsupportedExtensionError(Exception):

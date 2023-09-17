@@ -32,7 +32,7 @@ def register_extensions(app, config):
     db.init_app(app)
 
     from modules.consumer import ThreadedConsumer
-    for thread in range(2):
+    for thread in range(config.get("common.consumer_threads")):
         app.logger.info(f"Запуск RabbitMQ consumer thread {thread}")
         td = ThreadedConsumer(app)
         td.start()

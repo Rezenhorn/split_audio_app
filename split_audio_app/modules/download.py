@@ -18,7 +18,7 @@ def download_file(url: str, file_name: str) -> os.PathLike:
     return _rename_file_with_extension(path_to_file)
 
 
-def _rename_file_with_extension(path_to_file: os.PathLike) -> os.PathLike:
+def _rename_file_with_extension(path_to_file: str) -> os.PathLike:
     """Определяет расширение файла и добавляет его в его название."""
     file_name = os.path.basename(path_to_file)
     try:
